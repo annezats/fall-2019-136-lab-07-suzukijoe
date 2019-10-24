@@ -6,3 +6,6 @@ TEST_CASE("Test removeLeadingSpaces(string line"){
 	CHECK(removeLeadingSpaces("       int x = 1;  ") == "int x = 1;  ");
 }
 
+TEST_CASE("Test countChar(string line, char c)"){
+	CHECK(countChar("int main(){", '{') == 1);
+}

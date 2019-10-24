@@ -5,9 +5,13 @@
 
 int main(int argc, char *argv[])
 {
-  std::cout << "Test" << std::endl;
-  std::string result = removeLeadingSpaces("       int x = 1;  ");
-  std::cout << result << std::endl;
+  std::string str;
+  std::cin >> str;
+  std::cout << std::endl;
   
+  std::string result = removeLeadingSpaces(str);
+  int brackets = countChar(str, '{');
+  std::cout << result << std::endl;
+  std::cout << brackets << std::endl;  
   return 0;
 }
