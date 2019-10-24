@@ -1,12 +1,9 @@
 * Fall 2019 - Lab 06
 
-* Last name:
+* Last name: Suzuki
+* First name: Joe
 
-* First name:
-
-
-* GitHub username:
-
+* GitHub username: suzukijoe
 * Notes:
 
 
