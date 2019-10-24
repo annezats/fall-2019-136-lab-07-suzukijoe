@@ -4,17 +4,15 @@
 
 std::string removeLeadingSpaces(std::string line){
   std::string removedLine;
-  int i = 0;
-  bool foundSpace = false;
-  while(line[i]){
-    char c = line[i];
-    while(foundSpace) {
+  bool foundSpace = true;
+  for(char c: line){
+    if(foundSpace) {
       if(!isspace(c)){
 	removedLine += c;
-	foundSpace = true;
+	foundSpace = false;
       }
-    }
-    removedLine += line[i];
+    } else removedLine += c;
   }
   return removedLine;
 }
+
