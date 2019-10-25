@@ -5,13 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-  std::string str;
-  std::cin >> str;
-  std::cout << std::endl;
-  
-  std::string result = removeLeadingSpaces(str);
-  int brackets = countChar(str, '{');
-  std::cout << result << std::endl;
-  std::cout << brackets << std::endl;  
+  std::string inden = indentedParse();
+  std::cout << inden << std::endl;
   return 0;
 }

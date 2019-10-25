@@ -1,6 +1,7 @@
 #pragma once
 
-std::ifstream stream_file();
+std::ifstream stream_file(std::string file);
 std::string removeLeadingSpaces(std::string line);
 int countChar(std::string line, char c);
-std::string parse(std::string file);
+std::string tabs(int count);
+std::string indentedParse();
