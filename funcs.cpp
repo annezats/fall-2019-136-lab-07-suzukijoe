@@ -5,6 +5,9 @@
 #include <string>
 #include <cctype>
 
+/*
+  Open file stream for std input
+*/
 std::ifstream stream_file(std::string file){
   std::ifstream fin(file);
   if (fin.fail()){
@@ -15,7 +18,7 @@ std::ifstream stream_file(std::string file){
 }
 
 /*
-  Remove the leading spaces before each line of code
+  Remove the leading spaces before each 'line'
 */
 std::string removeLeadingSpaces(std::string line){
   int leadingSpace = 0;
@@ -35,6 +38,9 @@ int countChar(std::string line, char c){
   return count;
 }
 
+/*
+  Returns 'count' amount of tabs
+*/
 std::string tabs(int count){
   std::string indents;
   for(int i = 0; i < count; i++) indents += '\t';
@@ -42,19 +48,24 @@ std::string tabs(int count){
 }
 
 /*
-  Go through the file and style through each line 
+  Go through the file and style each line correctly
 */
-std::string indentedParse(){
-  std::ifstream file = stream_file("bad-code.cpp");
+std::string indentedParse(std::string file){
+  std::ifstream fin = stream_file(file);
+  /* 
+     line: line of the file
+     cleaned: stylized line
+     organized: return each stylized line as one string
+  */
   std::string line, cleaned, organized;
-  int indents = 0;
-  while(getline(file, line)){
+  int indents = 0; 
+  while(getline(fin, line)){
     int closing = countChar(line, '}');
     if (closing > 0) indents -= closing;
     cleaned = tabs(indents) + removeLeadingSpaces(line) + '\n';
     organized += cleaned;
     indents += countChar(line, '{');
   }
-  file.close();
+  fin.close();
   return organized;
 }
