@@ -5,7 +5,11 @@
 
 int main(int argc, char *argv[])
 {
-  std::string inden = indentedParse();
+  std::cout << "Bad Code Style:" << std::endl;
+  printFile("bad-code.cpp");
+
+  std::cout << "Correct Style:" << std::endl;
+  std::string inden = indentedParse("bad-code.cpp");
   std::cout << inden << std::endl;
   return 0;
 }

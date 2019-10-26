@@ -17,6 +17,13 @@ std::ifstream stream_file(std::string file){
   return fin; 
 }
 
+void printFile(std::string file){
+  std::ifstream fin = stream_file(file);
+  std::string line;
+  while(getline(fin, line)) std::cout << line << std::endl;
+  std::cout << std::endl;
+  fin.close();
+}
 /*
   Remove the leading spaces before each 'line'
 */
@@ -52,7 +59,7 @@ std::string tabs(int count){
 */
 std::string indentedParse(std::string file){
   std::ifstream fin = stream_file(file);
-  /* 
+   /* 
      line: line of the file
      cleaned: stylized line
      organized: return each stylized line as one string
