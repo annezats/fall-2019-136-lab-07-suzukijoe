@@ -14,7 +14,7 @@ std::ifstream stream_file(std::string file){
     std::cerr << "File cannot be opened for reading." << std::endl;
     exit(1); // exit if failed to open the file
   }
-  return fin; 
+  return fin;
 }
 
 void printFile(std::string file){
@@ -51,7 +51,7 @@ int countChar(std::string line, char c){
 std::string tabs(int count){
   std::string indents;
   for(int i = 0; i < count; i++) indents += '\t';
-  return indents; 
+  return indents;
 }
 
 /*
@@ -59,18 +59,24 @@ std::string tabs(int count){
 */
 std::string indentedParse(std::string file){
   std::ifstream fin = stream_file(file);
-   /* 
+   /*
      line: line of the file
      cleaned: stylized line
-     organized: return each stylized line as one string
+     organized: return all stylized lines as one string
   */
-  std::string line, cleaned, organized;
-  int indents = 0; 
+  std::string line, noSpacesLine, cleaned, organized;
+  int indents = 0;
   while(getline(fin, line)){
-    int closing = countChar(line, '}');
-    if (closing > 0) indents -= closing;
-    cleaned = tabs(indents) + removeLeadingSpaces(line) + '\n';
+    noSpacesLine = removeLeadingSpaces(line);
+    if (noSpacesLine[0]== '}'){ //removes one indent if  the first thing in the line is a closing bracket
+       indents -= 1;
+       cleaned = tabs(indents) + noSpacesLine + '\n';
+       indents += 1;
+    }
+    else cleaned = tabs(indents) + noSpacesLine + '\n';
     organized += cleaned;
+
+    indents -= countChar(line, '}');
     indents += countChar(line, '{');
   }
   fin.close();
